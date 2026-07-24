@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vectari — Sistema de gestão para empresas de controle de pragas</title>
+<meta name="description" content="Vectari organiza clientes, ordens de serviço, garantias e renovações da sua dedetizadora num painel só — e avisa antes de vencer, não depois.">
+<meta property="og:title" content="Vectari — Gestão para empresas de controle de pragas">
+<meta property="og:description" content="Chega de perder renovação e garantia na planilha. Organize clientes, OS e alertas de vencimento num painel só.">
+<meta property="og:type" content="website">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Vectari","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"Sistema de gestão para empresas de controle de pragas: clientes, ordens de serviço, garantias e alertas de renovação.","offers":{"@type":"Offer","price":"150.00","priceCurrency":"BRL"}}
+</script>
+</head>
+<body>
+
+<div class="site-header-wrap">
+<header class="site-header">
+  <div class="logo">
+    <svg width="26" height="26" viewBox="0 0 72 72"><g stroke="var(--ink)" stroke-width="5" fill="none" stroke-linecap="round"><line x1="14" y1="14" x2="36" y2="58"/><line x1="36" y1="58" x2="58" y2="14"/></g><path d="M50 18 L58 14 L56 23" stroke="var(--ink)" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="14" r="9" fill="var(--ink-faint)"/><circle cx="36" cy="58" r="9" fill="var(--ink)"/></svg>
+    VECTARI
+  </div>
+  <nav class="nav-links">
+    <a href="#recursos">Recursos</a>
+    <a href="#comparativo">Comparativo</a>
+    <a href="#planos">Planos</a>
+  </nav>
+  <div class="nav-cta">
+    <a href="#" class="link-quiet">Login</a>
+    <button onclick="ctaClick()" class="cta-btn">Quero conhecer o Vectari</button>
+  </div>
+</header>
+</div>
+
+<main>
+<section class="hero">
+  <div class="eyebrow"><span class="eyebrow-dot"></span>PARA EMPRESAS DE CONTROLE DE PRAGAS</div>
+  <h1>Chega de perder <span>renovação</span> e esquecer <span>garantia</span> na planilha.</h1>
+  <p class="subhead">O Vectari organiza clientes, ordens de serviço, garantias e renovações da sua dedetizadora num painel só — e avisa antes de perder o prazo, não depois.</p>
+  <div class="hero-cta">
+    <button onclick="ctaClick()" class="cta-btn large">Quero conhecer o Vectari</button>
+  </div>
+  <div class="trust-list">
+    <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>Sem fidelidade</span>
+    <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>Preço fixo no acesso antecipado</span>
+    <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 13l4 4L19 7"/></svg>Suporte direto com quem constrói o produto</span>
+  </div>
+</section>
+
+<section class="mockup-section" data-reveal>
+  <div class="mockup-card">
+    <div class="browser-bar"><span class="pip"></span><span class="pip"></span><span class="pip"></span></div>
+    <div class="mockup-inner">
+      <div class="mockup-header">Clientes · Ordens de serviço</div>
+      <div class="mockup-sub">Exemplo ilustrativo do painel</div>
+
+      <div class="client-row header-row">
+        <div>Cliente</div><div>Última OS</div><div>Garantia</div><div>Renovação</div>
+      </div>
+
+      <div class="client-row">
+        <div class="client-name">Condomínio Alfa</div>
+        <div class="client-date">08/07</div>
+        <div><span class="pill ok"><span class="pill-dot"></span>Dentro do prazo</span></div>
+        <div><span class="pill warn"><span class="pill-dot"></span>Vence em 6 dias</span></div>
+      </div>
+      <div class="client-row">
+        <div class="client-name">Padaria Bom Trigo</div>
+        <div class="client-date">02/07</div>
+        <div><span class="pill warn"><span class="pill-dot"></span>Vence em 3 dias</span></div>
+        <div><span class="pill ok"><span class="pill-dot"></span>Dentro do prazo</span></div>
+      </div>
+      <div class="client-row">
+        <div class="client-name">Galpão Sul Logística</div>
+        <div class="client-date">29/06</div>
+        <div><span class="pill ok"><span class="pill-dot"></span>Dentro do prazo</span></div>
+        <div><span class="pill ok"><span class="pill-dot"></span>Dentro do prazo</span></div>
+      </div>
+
+      <div class="team-panel">
+        <div class="team-header">Equipe · Permissões</div>
+        <div class="team-grid">
+          <div class="team-card"><div class="avatar a1">MS</div><div><div class="name">Marina Souza</div><div class="role">Administrador</div></div></div>
+          <div class="team-card"><div class="avatar a2">JF</div><div><div class="name">Jonas Ferreira</div><div class="role">Técnico de campo</div></div></div>
+          <div class="team-card"><div class="avatar a3">PL</div><div><div class="name">Priscila Lima</div><div class="role">Financeiro</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="twin" data-reveal>
+  <div>
+    <div class="twin-label">AINDA NO WHATSAPP E NA PLANILHA?</div>
+    <h2>A gente organiza tudo num painel só — sem você ter que migrar nada na mão.</h2>
+    <p>Cadastre clientes, registre orçamentos e ordens de serviço em minutos. Sem curva de aprendizado, sem depender de planilha compartilhada que ninguém atualiza.</p>
+    <button onclick="ctaClick()" class="cta-btn">Quero conhecer o Vectari</button>
+  </div>
+  <div class="twin-visual">
+    <div class="vrow"><span class="name">Orçamento enviado</span><span class="pill ok">registrado</span></div>
+    <div class="vrow"><span class="name">Ordem de serviço #0231</span><span class="pill ok">concluída</span></div>
+    <div class="vrow"><span class="name">Garantia — Padaria Bom Trigo</span><span class="pill warn">vence em 3 dias</span></div>
+    <div class="vrow"><span class="name">Renovação — Condomínio Alfa</span><span class="pill warn">vence em 6 dias</span></div>
+  </div>
+</section>
+
+<section class="twin reverse alt" data-reveal>
+  <div>
+    <div class="twin-label">JÁ TEM UM SISTEMA QUE NÃO AVISA NADA?</div>
+    <h2>Equipe com permissões separadas, do jeito que sua operação já funciona.</h2>
+    <p>Administrador vê tudo. Técnico de campo vê só as ordens dele. Financeiro vê só o que é financeiro. Cada pessoa da sua equipe enxerga exatamente o que precisa — nada a mais, nada a menos.</p>
+    <button onclick="ctaClick()" class="cta-btn">Quero conhecer o Vectari</button>
+  </div>
+  <div class="twin-visual">
+    <div class="vrow"><span class="name"><span class="avatar a1 small">MS</span>Marina Souza</span><span class="pill ok">Administrador</span></div>
+    <div class="vrow"><span class="name"><span class="avatar a2 small">JF</span>Jonas Ferreira</span><span class="pill ok">Técnico de campo</span></div>
+    <div class="vrow"><span class="name"><span class="avatar a3 small">PL</span>Priscila Lima</span><span class="pill ok">Financeiro</span></div>
+  </div>
+</section>
+
+<section class="alert-section" data-reveal>
+  <h2>Sem tempo de ficar de olho em tudo? A gente avisa antes de vencer.</h2>
+  <p>Garantia perto do fim, contrato prestes a vencer, revisita agendada — o Vectari te avisa com antecedência, não depois que o cliente já ligou reclamando.</p>
+  <div class="whatsapp-mock">
+    <div class="from"><span class="from-dot"></span>VECTARI · AGORA</div>
+    <div class="msg">A garantia da Padaria Bom Trigo vence em 3 dias. Quer agendar a revisita agora?</div>
+  </div>
+</section>
+
+<section id="recursos" class="features" data-reveal>
+  <span class="section-label">FUNCIONALIDADES</span>
+  <h2>Tudo que a sua dedetizadora precisa pra parar de perder prazo</h2>
+  <div class="feature-grid">
+    <div class="feature-card" data-reveal>
+      <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></div>
+      <h3>Cadastro de clientes</h3>
+      <p>Histórico completo de cada cliente: orçamentos, serviços, garantias e observações num só lugar.</p>
+    </div>
+    <div class="feature-card" data-reveal>
+      <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 4h6a1 1 0 011 1v1H8V5a1 1 0 011-1z"/><rect x="6" y="6" width="12" height="14" rx="2"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <h3>Ordens de serviço</h3>
+      <p>Crie, atribua e acompanhe ordens de serviço do orçamento até a conclusão, sem depender de papel ou WhatsApp.</p>
+    </div>
+    <div class="feature-card" data-reveal>
+      <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></div>
+      <h3>Alertas de garantia e renovação</h3>
+      <p>Veja o que está vencendo antes que vença — e evite perder contrato para o concorrente.</p>
+    </div>
+    <div class="feature-card" data-reveal>
+      <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3 20c0-3 2.5-5 5-5s5 2 5 5M14 20c0-2.2 1.6-4 4-4s4 1.8 4 4"/></svg></div>
+      <h3>Equipe com permissões</h3>
+      <p>Adicione funcionários com papéis diferentes: administrador, técnico de campo, financeiro e outros.</p>
+    </div>
+    <div class="feature-card" data-reveal>
+      <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M4 9h16M8 14h3"/></svg></div>
+      <h3>Financeiro <span class="soon">em breve</span></h3>
+      <p>Acompanhamento de recebimentos e inadimplência integrado ao restante da operação.</p>
+    </div>
+    <div class="feature-card" data-reveal>
+      <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V10M11 20V4M18 20v-7"/></svg></div>
+      <h3>Painel único</h3>
+      <p>Tudo visível num painel central, sem precisar abrir cinco abas ou perguntar pra equipe onde está a informação.</p>
+    </div>
+  </div>
+</section>
+
+<section id="comparativo" class="comparison" data-reveal>
+  <span class="section-label">COMPARATIVO</span>
+  <h2>Planilha + WhatsApp vs Vectari</h2>
+  <div class="comp-table">
+    <div class="comp-row head">
+      <div class="comp-cell"></div>
+      <div class="comp-cell">Planilha + WhatsApp</div>
+      <div class="comp-cell">Vectari</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-cell item-label">Histórico do cliente centralizado</div>
+      <div class="comp-cell"><span class="status-circle bad"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"/></svg></span></div>
+      <div class="comp-cell"><span class="status-circle good"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg></span></div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-cell item-label">Alerta automático de vencimento</div>
+      <div class="comp-cell"><span class="status-circle bad"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"/></svg></span></div>
+      <div class="comp-cell"><span class="status-circle good"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg></span></div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-cell item-label">Permissões por função</div>
+      <div class="comp-cell"><span class="status-circle bad"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"/></svg></span></div>
+      <div class="comp-cell"><span class="status-circle good"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg></span></div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-cell item-label">Depende de alguém lembrar</div>
+      <div class="comp-cell"><span class="always-tag">sempre</span></div>
+      <div class="comp-cell"><span class="never-tag">nunca</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="planos" class="pricing" data-reveal>
+  <span class="section-label">ACESSO ANTECIPADO</span>
+  <h2>Entre agora e trave esse preço para sempre</h2>
+  <div class="price-card">
+    <div class="price-badge">ACESSO ANTECIPADO</div>
+    <div class="price-value">R$150<span>/mês</span></div>
+    <p class="desc">Sem contrato de fidelidade. Cancele quando quiser.</p>
+    <ul>
+      <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg>Cadastro ilimitado de clientes</li>
+      <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg>Ordens de serviço com histórico</li>
+      <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg>Alertas de garantia e renovação</li>
+      <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg>Equipe com permissões por função</li>
+      <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 13l4 4L19 7"/></svg>Suporte direto com quem constrói o produto</li>
+    </ul>
+    <button onclick="ctaClick()" class="cta-btn block">Quero conhecer o Vectari</button>
+  </div>
+</section>
+
+<section class="final-cta" data-reveal>
+  <h2>Sua concorrente ainda está perdendo renovação na planilha. Você não precisa.</h2>
+  <p>Comece agora e garanta o preço de acesso antecipado antes do lançamento oficial.</p>
+  <button onclick="ctaClick()" class="cta-btn large on-dark">Quero conhecer o Vectari</button>
+</section>
+
+<section class="faq" data-reveal>
+  <h2>Perguntas frequentes</h2>
+  <details>
+    <summary>Preciso migrar minha planilha atual pra usar o Vectari?</summary>
+    <p>Não é obrigatório para começar. Você pode cadastrar clientes aos poucos, ou, se preferir, conversar com a gente sobre importar sua base atual.</p>
+  </details>
+  <details>
+    <summary>Meu técnico de campo consegue usar pelo celular?</summary>
+    <p>Sim, o painel funciona pelo navegador do celular, sem precisar instalar aplicativo separado.</p>
+  </details>
+  <details>
+    <summary>Quantas pessoas da minha equipe posso cadastrar?</summary>
+    <p>No plano de acesso antecipado não há limite artificial de usuários — cadastre quantos precisar.</p>
+  </details>
+  <details>
+    <summary>Como funcionam os alertas de garantia e renovação?</summary>
+    <p>O Vectari acompanha as datas de cada contrato e garantia cadastrados e avisa com antecedência configurável, antes do vencimento.</p>
+  </details>
+  <details>
+    <summary>O preço de R$150/mês muda depois?</summary>
+    <p>Quem entrar agora no acesso antecipado mantém esse valor fixo, mesmo que o preço padrão suba no futuro.</p>
+  </details>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="logo">
+    <svg width="20" height="20" viewBox="0 0 72 72"><g stroke="var(--ink)" stroke-width="6" fill="none" stroke-linecap="round"><line x1="14" y1="14" x2="36" y2="58"/><line x1="36" y1="58" x2="58" y2="14"/></g><path d="M50 18 L58 14 L56 23" stroke="var(--ink)" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="14" r="9" fill="var(--ink-faint)"/><circle cx="36" cy="58" r="9" fill="var(--ink)"/></svg>
+    VECTARI
+  </div>
+  <p>Vectari — o painel de quem não deixa nenhuma renovação passar em branco.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
