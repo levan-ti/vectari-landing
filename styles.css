@@ -471,15 +471,16 @@ main { padding-top: 24px; }
   border-radius: 999px;
   white-space: nowrap;
 }
-.price-value {
+.offer-headline {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 44px;
+  font-weight: 600;
+  font-size: 19.5px;
+  line-height: 1.38;
+  letter-spacing: -.012em;
   color: var(--ink);
-  margin: 16px 0 4px;
+  margin: 20px 0 10px;
 }
-.price-value span { font-family: var(--font-mono); font-size: 15px; color: var(--ink-dim); font-weight: 500; }
-.price-card > .desc { color: var(--ink-dim); font-size: 14.5px; margin: 0 0 22px; }
+.price-card > .desc { color: var(--ink-dim); font-size: 14.5px; line-height: 1.5; margin: 0 0 22px; }
 .price-card ul { list-style: none; margin: 0 0 30px; padding: 0; }
 .price-card li {
   font-size: 14.5px;
@@ -548,9 +549,176 @@ main { padding-top: 24px; }
   .twin.reverse .twin-visual { order: 0; }
   .feature-grid { grid-template-columns: 1fr; }
   .comp-row { grid-template-columns: 1.2fr 0.9fr 0.9fr; }
-  .site-header { flex-direction: column; gap: 14px; }
-  .nav-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+  /* Header vira uma barra fina de uma linha: logo + CTA.
+     As ancoras e o Login saem no mobile — as secoes seguem
+     alcancaveis pelo scroll. */
+  .site-header-wrap { top: 8px; padding: 0 12px; }
+  .site-header { padding: 10px 14px; border-radius: 14px; gap: 12px; }
+  .nav-links { display: none; }
+  .nav-cta .link-quiet { display: none; }
+  .logo { font-size: 17px; gap: 8px; }
+  .logo svg { width: 22px; height: 22px; }
+  .site-header .cta-btn { font-size: 13.5px; padding: 9px 16px; }
+  .site-header .cta-btn { white-space: nowrap; }
   .team-grid { grid-template-columns: 1fr; }
   .client-row { grid-template-columns: 1fr; gap: 4px; text-align: left; }
   .client-row.header-row { display: none; }
+}
+
+/* Telas bem estreitas (ex.: iPhone SE): aperta mais pra barra nao quebrar. */
+@media (max-width: 360px) {
+  .site-header { padding: 9px 12px; gap: 8px; }
+  .logo { font-size: 15px; gap: 6px; }
+  .logo svg { width: 20px; height: 20px; }
+  .site-header .cta-btn { font-size: 12.5px; padding: 8px 12px; }
+}
+
+/* ── Modal de captura de ICP ─────────────────────────────── */
+body.modal-aberto { overflow: hidden; }
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: oklch(19% 0.02 275 / 0.55);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  overflow-y: auto;
+}
+.modal-overlay[hidden] { display: none; }
+
+.modal-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* nunca passa da altura da tela: o miolo rola, o CTA fica fixo */
+  max-height: calc(100vh - 48px);
+  max-height: calc(100dvh - 48px);
+  width: 100%;
+  max-width: 460px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow-lg);
+  padding: 34px 32px 28px;
+  margin: auto;
+  animation: modal-in .22s ease;
+}
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.modal-card h2 {
+  font-family: var(--font-display);
+  font-size: 23px;
+  line-height: 1.25;
+  letter-spacing: -.015em;
+  margin: 12px 0 8px;
+}
+.modal-sub {
+  color: var(--ink-dim);
+  font-size: 14.5px;
+  line-height: 1.5;
+  margin: 0 0 22px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  color: var(--ink-faint);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  line-height: 0;
+  transition: background .18s ease, color .18s ease;
+}
+.modal-close:hover { background: var(--bg-alt); color: var(--ink); }
+
+#lead-form {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+}
+/* Unica parte que rola. O resto do card fica ancorado. */
+.modal-fields {
+  overflow-y: auto;
+  min-height: 0;
+  flex: 1;
+  /* respiro pra barra de rolagem nao encostar nos campos */
+  padding-right: 2px;
+  margin-right: -2px;
+}
+/* separador some quando nao ha o que rolar */
+#lead-form > .form-error,
+#lead-form > .cta-btn {
+  flex-shrink: 0;
+}
+
+.field { margin-bottom: 15px; }
+.field label {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.field input,
+.field select {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 13px;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+.field input::placeholder { color: var(--ink-faint); }
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+.field .invalido { border-color: var(--danger); }
+
+.form-error {
+  background: var(--danger-bg);
+  color: var(--danger);
+  font-size: 13.5px;
+  font-weight: 500;
+  border-radius: 9px;
+  padding: 9px 13px;
+  margin: 0 0 14px;
+}
+.form-error[hidden] { display: none; }
+
+.modal-foot {
+  color: var(--ink-faint);
+  font-size: 12.5px;
+  line-height: 1.45;
+  text-align: center;
+  margin: 14px 0 0;
+}
+
+@media (max-width: 760px) {
+  .modal-overlay { padding: 16px 12px; align-items: flex-start; }
+  .modal-card { padding: 26px 18px 20px; border-radius: 16px; }
+  .modal-card h2 { font-size: 19px; margin: 10px 0 6px; }
+  .modal-sub { font-size: 14px; margin-bottom: 16px; }
+  .field { margin-bottom: 12px; }
+  /* linha sutil marcando que o miolo rola */
+  .modal-fields { border-top: 1px solid var(--border); padding-top: 14px; }
+  #lead-form > .cta-btn { margin-top: 14px; }
+  /* 16px evita o zoom automático do iOS ao focar o campo */
+  .field input, .field select { font-size: 16px; }
 }

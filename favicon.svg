@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2.75 0 72 72" width="64" height="64" role="img" aria-label="Vectari">
+  <style>
+    .ink { stroke: #11131D; }
+    .ink-fill { fill: #11131D; }
+    .faint-fill { fill: #898B99; }
+    @media (prefers-color-scheme: dark) {
+      .ink { stroke: #F8FAFE; }
+      .ink-fill { fill: #F8FAFE; }
+      .faint-fill { fill: #898B99; }
+    }
+  </style>
+  <g class="ink" stroke-width="7" fill="none" stroke-linecap="round">
+    <line x1="14" y1="14" x2="36" y2="58"/>
+    <line x1="36" y1="58" x2="58" y2="14"/>
+  </g>
+  <path class="ink" d="M50 18 L58 14 L56 23" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle class="faint-fill" cx="14" cy="14" r="9"/>
+  <circle class="ink-fill" cx="36" cy="58" r="9"/>
+</svg>
