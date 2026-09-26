@@ -65,6 +65,8 @@ function montarMensagem() {
 var modalEl, focoAnterior;
 
 function ctaClick() {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: 'cta_click' });
   abrirModal();
 }
 
@@ -131,6 +133,19 @@ document.addEventListener('DOMContentLoaded', function () {
         mostrarErro('Preencha ' + invalido.rotulo + ' para continuar.');
         return;
       }
+
+      /* Só os selects: nome e cidade não vão para o analytics. */
+      function valorSelect(id) {
+        var el = document.getElementById(id);
+        return el ? el.value : '';
+      }
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'lead_whatsapp',
+        lead_clientes: valorSelect('lead-clientes'),
+        lead_equipe: valorSelect('lead-equipe'),
+        lead_organizacao: valorSelect('lead-organizacao')
+      });
 
       abrirWhatsApp(montarMensagem());
       fecharModal();
