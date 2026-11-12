@@ -18,7 +18,9 @@ var CAMPOS_OBRIGATORIOS = [
   { id: 'lead-cidade',      rotulo: 'sua cidade ou região' },
   { id: 'lead-clientes',    rotulo: 'quantos contratos com comércio você tem' },
   { id: 'lead-equipe',      rotulo: 'quantas pessoas trabalham na empresa' },
-  { id: 'lead-organizacao', rotulo: 'onde ficam hoje os certificados' }
+  { id: 'lead-organizacao', rotulo: 'onde ficam hoje os certificados' },
+  /* Só é cobrado quando aparece, ou seja, quando escolhem "Outro sistema". */
+  { id: 'lead-sistema',     rotulo: 'qual sistema você usa hoje' }
 ];
 
 /* Campos enviados na mensagem (independente de serem obrigatórios). */
@@ -26,7 +28,8 @@ var CAMPOS_MENSAGEM = [
   { id: 'lead-cidade',      prefixo: 'Cidade' },
   { id: 'lead-clientes',    prefixo: 'Contratos com comércio' },
   { id: 'lead-equipe',      prefixo: 'Equipe' },
-  { id: 'lead-organizacao', prefixo: 'Certificados e histórico em' }
+  { id: 'lead-organizacao', prefixo: 'Certificados e histórico em' },
+  { id: 'lead-sistema',     prefixo: 'Sistema atual' }
 ];
 
 /* ─── Abertura do WhatsApp ─────────────────────────────────── */
@@ -110,6 +113,8 @@ function primeiroCampoInvalido() {
   for (var i = 0; i < CAMPOS_OBRIGATORIOS.length; i++) {
     var campo = CAMPOS_OBRIGATORIOS[i];
     var el = document.getElementById(campo.id);
+    /* Campo escondido (ex.: "Qual sistema?") não conta. */
+    if (el && el.closest('.field[hidden]')) continue;
     if (el && !el.value.trim()) return { el: el, rotulo: campo.rotulo };
   }
   return null;
@@ -150,6 +155,22 @@ document.addEventListener('DOMContentLoaded', function () {
       abrirWhatsApp(montarMensagem());
       fecharModal();
     });
+
+    /* "Outro sistema" mostra a pergunta "Qual sistema você usa hoje?". */
+    var organizacao = document.getElementById('lead-organizacao');
+    var campoSistema = document.getElementById('campo-sistema');
+    var inputSistema = document.getElementById('lead-sistema');
+    if (organizacao && campoSistema && inputSistema) {
+      organizacao.addEventListener('change', function () {
+        var usaSistema = organizacao.value === 'Outro sistema';
+        campoSistema.hidden = !usaSistema;
+        if (usaSistema) {
+          inputSistema.focus();
+        } else {
+          inputSistema.value = '';
+        }
+      });
+    }
 
     /* Some com o erro assim que a pessoa corrige. */
     form.addEventListener('input', limparErro);
