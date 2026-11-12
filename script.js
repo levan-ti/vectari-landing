@@ -16,17 +16,17 @@ var WHATSAPP_NUMERO = '5588999112573';
 var CAMPOS_OBRIGATORIOS = [
   { id: 'lead-nome',        rotulo: 'seu nome' },
   { id: 'lead-cidade',      rotulo: 'sua cidade ou região' },
-  { id: 'lead-clientes',    rotulo: 'quantos clientes você atende por mês' },
+  { id: 'lead-clientes',    rotulo: 'quantos contratos com comércio você tem' },
   { id: 'lead-equipe',      rotulo: 'quantas pessoas trabalham na empresa' },
-  { id: 'lead-organizacao', rotulo: 'como você se organiza hoje' }
+  { id: 'lead-organizacao', rotulo: 'onde ficam hoje os certificados' }
 ];
 
 /* Campos enviados na mensagem (independente de serem obrigatórios). */
 var CAMPOS_MENSAGEM = [
   { id: 'lead-cidade',      prefixo: 'Cidade' },
-  { id: 'lead-clientes',    prefixo: 'Clientes/mês' },
+  { id: 'lead-clientes',    prefixo: 'Contratos com comércio' },
   { id: 'lead-equipe',      prefixo: 'Equipe' },
-  { id: 'lead-organizacao', prefixo: 'Se organiza com' }
+  { id: 'lead-organizacao', prefixo: 'Certificados e histórico em' }
 ];
 
 /* ─── Abertura do WhatsApp ─────────────────────────────────── */
@@ -56,7 +56,7 @@ function montarMensagem() {
     if (v) linhas.push(campo.prefixo + ': ' + v);
   });
 
-  linhas.push('Quero conhecer o Vectari.');
+  linhas.push('Quero saber da vaga de fundador do Vectari.');
   return linhas.join('\n');
 }
 
@@ -185,15 +185,79 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  /* ─── Reveal on scroll (comportamento original) ─── */
-  function check() {
-    var vh = window.innerHeight || document.documentElement.clientHeight;
-    document.querySelectorAll('[data-reveal]:not(.in)').forEach(function (el) {
-      var r = el.getBoundingClientRect();
-      if (r.top < vh - 60 && r.bottom > 0) el.classList.add('in');
+  /* ─── Simulador "Faça a conta": horas/semana → dias/ano ─── */
+  var chips = document.querySelectorAll('.chip[data-horas]');
+  var saidaDias = document.getElementById('calc-dias');
+  var saidaHoras = document.getElementById('calc-horas');
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var horasSemana = Number(chip.getAttribute('data-horas'));
+      var horasAno = horasSemana * 52;
+      var dias = Math.round(horasAno / 8);
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
+      if (saidaDias) saidaDias.textContent = dias + ' dias';
+      if (saidaHoras) saidaHoras.textContent = horasAno + ' horas';
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'calc_horas', calc_horas_semana: horasSemana });
     });
+  });
+
+  var semAnimacao = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var temIO = 'IntersectionObserver' in window;
+
+  /* ─── Faixa "Um dia de visitas": conclui uma por vez e recomeça.
+         Só roda enquanto a faixa está visível na tela. ─── */
+  var faixa = document.querySelector('.day-band');
+  var visitas = document.querySelectorAll('.day-visit');
+  if (faixa && visitas.length) {
+    if (semAnimacao) {
+      visitas.forEach(function (v) { v.classList.add('done'); });
+    } else {
+      var passo = 0, timer = null;
+      var tick = function () {
+        if (passo < visitas.length) {
+          visitas[passo].classList.add('done');
+        } else if (passo === visitas.length + 2) {
+          visitas.forEach(function (v) { v.classList.remove('done'); });
+          passo = -1;
+        }
+        passo++;
+      };
+      var ligar = function () { if (!timer) { tick(); timer = setInterval(tick, 1200); } };
+      var desligar = function () { clearInterval(timer); timer = null; };
+      if (temIO) {
+        new IntersectionObserver(function (entries) {
+          entries[0].isIntersecting ? ligar() : desligar();
+        }).observe(faixa);
+      } else {
+        ligar();
+      }
+    }
   }
-  requestAnimationFrame(check);
-  window.addEventListener('scroll', check, { passive: true });
-  window.addEventListener('resize', check);
+
+  /* ─── Elementos aparecem conforme o scroll ───────────────────
+     [data-reveal]  → o bloco sobe e aparece ao entrar na tela.
+     [data-stagger] → os filhos aparecem um depois do outro.
+     A classe .js (posta no <head>) garante que, sem JavaScript,
+     nada fica escondido. */
+  document.querySelectorAll('[data-stagger]').forEach(function (grupo) {
+    Array.prototype.forEach.call(grupo.children, function (filho, n) {
+      filho.style.setProperty('--d', n);
+    });
+  });
+
+  var alvos = document.querySelectorAll('[data-reveal], [data-stagger]');
+  if (semAnimacao || !temIO) {
+    alvos.forEach(function (el) { el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+    alvos.forEach(function (el) { io.observe(el); });
+  }
 });
