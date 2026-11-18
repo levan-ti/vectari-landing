@@ -850,3 +850,27 @@ body.modal-aberto { overflow: hidden; }
   /* 16px evita o zoom automático do iOS ao focar o campo */
   .field input, .field select { font-size: 16px; }
 }
+
+/* ── Botão flutuante do WhatsApp (direto com o Aurélio) ───── */
+.wa-float {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 90; /* abaixo do modal (100) */
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #25d366;
+  color: #fff;
+  box-shadow: 0 8px 24px oklch(19% 0.02 275 / 0.22);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.wa-float:hover { transform: scale(1.07); box-shadow: 0 12px 30px oklch(19% 0.02 275 / 0.28); }
+.wa-float:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+body.modal-aberto .wa-float { display: none; }
+@media (max-width: 640px) {
+  .wa-float { right: 16px; bottom: 16px; width: 54px; height: 54px; }
+}
