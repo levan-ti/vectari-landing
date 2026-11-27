@@ -935,3 +935,70 @@ a.logo { color: inherit; text-decoration: none; }
 .footer-links { display: flex; gap: 8px 20px; flex-wrap: wrap; font-size: 13.5px; }
 .footer-links a { color: var(--ink-dim); text-decoration: none; }
 .footer-links a:hover { color: var(--primary); }
+
+/* H1 da home: o selo faz parte do título (SEO) mas mantém o visual de antes */
+.hero h1 .eyebrow {
+  display: flex;
+  width: fit-content;
+  color: var(--primary-dark);
+  letter-spacing: normal;
+}
+
+/* ─── Banner de cookies (LGPD) ─────────────────────────────── */
+.cookie-banner {
+  position: fixed;
+  left: 20px;
+  right: 96px; /* não cobre o botão do WhatsApp */
+  bottom: 20px;
+  z-index: 95;
+  max-width: 620px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  padding: 18px 20px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.cookie-banner[hidden] { display: none; }
+.cookie-banner p { margin: 0; flex: 1 1 280px; font-size: 14px; line-height: 1.5; color: var(--ink-dim); }
+.cookie-banner a { color: var(--primary); }
+.cookie-actions { display: flex; gap: 10px; }
+/* Aceitar e recusar com o mesmo destaque, como orienta a ANPD */
+.cookie-actions button {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14.5px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: 1.5px solid var(--primary);
+  background: var(--surface);
+  color: var(--primary);
+  cursor: pointer;
+}
+.cookie-actions button:hover { background: var(--primary-soft); }
+.cookie-actions button:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
+body.modal-aberto .cookie-banner { display: none; }
+.footer-links button.link-button {
+  font: inherit;
+  color: var(--ink-dim);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.footer-links button.link-button:hover { color: var(--primary); }
+@media (max-width: 640px) {
+  .cookie-banner { left: 12px; right: 12px; bottom: 88px; }
+}
+
+/* Política de privacidade */
+.legal { max-width: 760px; margin: 0 auto; padding: 24px 24px 80px; }
+.legal h1 { font-family: var(--font-display); font-size: clamp(30px, 4vw, 42px); line-height: 1.15; margin: 8px 0 8px; color: var(--ink); }
+.legal .updated { color: var(--ink-faint); font-size: 14px; margin: 0 0 32px; }
+.legal h2 { font-family: var(--font-display); font-size: 21px; margin: 36px 0 10px; color: var(--ink); }
+.legal p, .legal li { font-size: 16px; line-height: 1.7; color: var(--ink-dim); }
+.legal ul { padding-left: 22px; }
+.legal a { color: var(--primary); }

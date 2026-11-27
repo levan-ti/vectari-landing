@@ -338,3 +338,91 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+/* ─── Consentimento de cookies (LGPD) ─────────────────────────
+   O GTM só carrega após "Aceitar" (ver window.vectariLoadGTM no <head>).
+   Aceitar e recusar têm o mesmo peso; a escolha pode ser revista pelo
+   link "Preferências de cookies" no rodapé. */
+
+var CONSENT_KEY = "vectari-consent";
+
+function lerConsentimento() {
+  try {
+    return localStorage.getItem(CONSENT_KEY);
+  } catch (e) {
+    return null;
+  }
+}
+
+function salvarConsentimento(valor) {
+  try {
+    localStorage.setItem(CONSENT_KEY, valor);
+  } catch (e) {}
+}
+
+function apagarCookiesAnalytics() {
+  var dominios = ["", "; domain=" + location.hostname, "; domain=." + location.hostname.replace(/^www\./, "")];
+  document.cookie.split(";").forEach(function (c) {
+    var nome = c.split("=")[0].trim();
+    if (/^_ga/.test(nome)) {
+      dominios.forEach(function (d) {
+        document.cookie = nome + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/" + d;
+      });
+    }
+  });
+}
+
+function aceitarCookies() {
+  salvarConsentimento("granted");
+  if (window.vectariLoadGTM) window.vectariLoadGTM();
+  if (window.gtag) window.gtag("consent", "update", { analytics_storage: "granted" });
+  esconderBannerCookies();
+}
+
+function recusarCookies() {
+  salvarConsentimento("denied");
+  if (window.gtag) window.gtag("consent", "update", { analytics_storage: "denied" });
+  apagarCookiesAnalytics();
+  esconderBannerCookies();
+}
+
+function esconderBannerCookies() {
+  var b = document.getElementById("cookie-banner");
+  if (b) b.hidden = true;
+}
+
+function abrirPreferenciasCookies() {
+  var b = document.getElementById("cookie-banner") || criarBannerCookies();
+  b.hidden = false;
+  var primeiro = b.querySelector("button");
+  if (primeiro) primeiro.focus();
+}
+
+function criarBannerCookies() {
+  var b = document.createElement("div");
+  b.id = "cookie-banner";
+  b.className = "cookie-banner";
+  b.setAttribute("role", "region");
+  b.setAttribute("aria-label", "Cookies");
+  b.innerHTML =
+    "<p>Usamos cookies de análise (Google Analytics) para entender como o site é usado. " +
+    'Eles só são ativados se você aceitar. <a href="/politica-de-privacidade/">Política de privacidade</a></p>' +
+    '<div class="cookie-actions">' +
+    '<button type="button" data-consent="denied">Recusar</button>' +
+    '<button type="button" data-consent="granted">Aceitar</button>' +
+    "</div>";
+  b.addEventListener("click", function (e) {
+    var escolha = e.target.getAttribute && e.target.getAttribute("data-consent");
+    if (escolha === "granted") aceitarCookies();
+    if (escolha === "denied") recusarCookies();
+  });
+  document.body.appendChild(b);
+  return b;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("[data-cookie-prefs]").forEach(function (el) {
+    el.addEventListener("click", abrirPreferenciasCookies);
+  });
+  if (!lerConsentimento()) criarBannerCookies();
+});
