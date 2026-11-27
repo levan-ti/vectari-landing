@@ -3,20 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Google Tag Manager -->
+    <!-- Consentimento (LGPD) + Google Tag Manager -->
+    <!-- O GTM (e o GA4 dentro dele) só carrega depois que o visitante aceita os
+         cookies de análise. A escolha fica em localStorage "vectari-consent";
+         o banner e a revogação estão em script.js. -->
     <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-P5W9NHG8");
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("consent", "default", {
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        analytics_storage: "denied",
+      });
+      window.vectariLoadGTM = function () {
+        if (window.vectariGTMLoaded) return;
+        window.vectariGTMLoaded = true;
+        gtag("consent", "update", { analytics_storage: "granted" });
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+          var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != "dataLayer" ? "&l=" + l : "";
+          j.async = true;
+          j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+          f.parentNode.insertBefore(j, f);
+        })(window, document, "script", "dataLayer", "GTM-P5W9NHG8");
+      };
+      try {
+        if (localStorage.getItem("vectari-consent") === "granted") {
+          window.vectariLoadGTM();
+        }
+      } catch (e) {}
     </script>
-    <!-- End Google Tag Manager -->
+    <!-- End Consentimento + Google Tag Manager -->
     <title>Ordem de serviço de dedetização no celular | Vectari</title>
     <meta
       name="description"
@@ -125,16 +148,6 @@
     </script>
   </head>
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript
-      ><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-P5W9NHG8"
-        height="0"
-        width="0"
-        style="display: none; visibility: hidden"
-      ></iframe
-    ></noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <div class="site-header-wrap">
       <header class="site-header">
         <a class="logo" href="/" aria-label="Vectari, página inicial">
@@ -296,6 +309,8 @@
         <a href="/ordem-de-servico-dedetizacao/">Ordem de serviço de dedetização</a>
         <a href="/comprovante-de-dedetizacao/">Comprovante de dedetização</a>
         <a href="/sistema-para-dedetizadora-que-atende-comercio/">Dedetizadora que atende comércio</a>
+        <a href="/politica-de-privacidade/">Política de privacidade</a>
+        <button type="button" class="link-button" data-cookie-prefs>Preferências de cookies</button>
       </nav>
       <p>Vectari · Sistema de Gestão para Dedetizadoras e Controle de Pragas</p>
     </footer>
